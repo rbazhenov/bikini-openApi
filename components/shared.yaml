@@ -1,0 +1,25 @@
+openapi: "3.0.1"
+info:
+  title: Shared components
+  description: API description in Markdown.
+  version: 1.6.0
+  contact:
+    name: Ruslan Bazhenov
+    email: bazhen.ruslan@gmail.com
+
+paths:
+  /:
+    get:
+      description: just for yaml open api parser
+      operationId: index
+      tags:
+        - index
+      responses:
+        "200":
+          description: just for yaml open api parser
+
+components:
+  schemas:
+    ObjectId:
+      type: string
+      maxLength: 255

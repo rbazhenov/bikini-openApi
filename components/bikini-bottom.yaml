@@ -1,0 +1,196 @@
+openapi: "3.0.1"
+info:
+  title: Bikini-bottom components
+  description: API description in Markdown.
+  version: 1.6.0
+  contact:
+    name: Ruslan Bazhenov
+    email: bazhen.ruslan@gmail.com
+
+paths:
+  /:
+    get:
+      description: just for yaml open api parser
+      operationId: index
+      tags:
+        - index
+      responses:
+        "200":
+          description: just for yaml open api parser
+
+components:
+  schemas:
+    ResidentDtoBody:
+      type: object
+      description: житель Бикини Боттон
+      oneOf:
+        - $ref: '#/components/schemas/LocalResidentDto'
+        - $ref: '#/components/schemas/MysticResidentDto'
+      discriminator:
+        propertyName: type
+        mapping:
+          LOCAL_RESIDENT: '#/components/schemas/LocalResidentDto'
+          MYSTIC_RESIDENT: '#/components/schemas/MysticResidentDto'
+
+    ResidentType:
+      type: string
+      description: Понадобится для фильтрации общего списка жителей
+      enum:
+        - LOCAL_RESIDENT
+        - MYSTIC_RESIDENT
+
+    FullNameDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+          maxLength: 255
+        lastName:
+          type: string
+          maxLength: 255
+
+    CommentDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        text:
+          type: string
+          maxLength: 255
+        hidden:
+          type: boolean
+
+    RegionDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        name:
+          type: string
+          maxLength: 255
+
+    FileTypeDto:
+      type: string
+      enum:
+        - 'IMAGE'
+        - 'PDF'
+        - 'ARCHIVE'
+
+    FileDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        name:
+          type: string
+          maxLength: 255
+        type:
+          $ref: '#/components/schemas/FileTypeDto'
+        externalId:
+          type: string
+          maxLength: 255
+        deleted:
+          type: boolean
+
+    ClubDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        name:
+          type: string
+          maxLength: 255
+
+    ImportanceDto:
+      type: string
+      enum:
+        - 'LOW'
+        - 'MIDDLE'
+        - 'HIGH'
+        - 'LEGEND'
+
+    AwardDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        name:
+          type: string
+          maxLength: 255
+        importance:
+          $ref: '#/components/schemas/ImportanceDto'
+
+    ResidentDto:
+      discriminator:
+        propertyName: type
+        mapping:
+          LOCAL_RESIDENT: '#/components/schemas/LocalResidentDto'
+          MYSTIC_RESIDENT: '#/components/schemas/MysticResidentDto'
+      type: object
+      required:
+        - type
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        type:
+          type: string
+          maxLength: 255
+        fullName:
+          $ref: '#/components/schemas/FullNameDto'
+        comment:
+          $ref: '#/components/schemas/CommentDto'
+        region:
+          $ref: '#/components/schemas/RegionDto'
+        files:
+          type: array
+          maxItems: 255
+          items:
+            $ref: '#/components/schemas/FileDto'
+
+    LocalResidentDto:
+      allOf:
+        - $ref: '#/components/schemas/ResidentDto'
+      type: object
+      additionalProperties: false
+      properties:
+        club:
+          $ref: '#/components/schemas/ClubDto'
+        awards:
+          type: array
+          maxItems: 255
+          items:
+            $ref: '#/components/schemas/AwardDto'
+
+    MysticResidentDto:
+      allOf:
+        - $ref: '#/components/schemas/ResidentDto'
+      type: object
+      additionalProperties: false
+      properties:
+        appearancePerYear:
+          type: integer
+          format: int32
+          minimum: -2147483648
+          maximum: 2147483647
+
+    MucusLevelDto:
+      type: string
+      enum:
+        - 'LOW'
+        - 'MIDDLE'
+        - 'HIGH'
+
+    SnailDto:
+      type: object
+      properties:
+        id:
+          $ref: './shared.yaml#/components/schemas/ObjectId'
+        fullName:
+          $ref: '#/components/schemas/FullNameDto'
+        age:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 2000
+        mucusLevel:
+          $ref: '#/components/schemas/MucusLevelDto'

@@ -1,0 +1,48 @@
+openapi: "3.0.1" #todo find last version
+info:
+  title: Sample API
+  description: API description in Markdown.
+  version: 1.6.0
+  contact:
+    name: Ruslan Bazhenov
+    email: bazhen.ruslan@gmail.com
+tags:
+  - name: snail
+  - name: resident
+
+paths:
+  /bikini-bottom/resident/save:
+    post:
+      summary: save new resident
+      operationId: saveResident
+      tags:
+        - resident
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../components/bikini-bottom.yaml#/components/schemas/ResidentDtoBody"
+      responses:
+        "200":
+          description: return saved data
+          content:
+            application/json:
+              schema:
+                $ref: "../components/bikini-bottom.yaml#/components/schemas/ResidentDto"
+
+  /bikini-bottom/pet/snail/save:
+    post:
+      summary: save new snail pet
+      operationId: saveSnail
+      tags:
+        - snail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../components/bikini-bottom.yaml#/components/schemas/SnailDto"
+      responses:
+        200:
+          description: snail pet saved
+
+  #todo add other
