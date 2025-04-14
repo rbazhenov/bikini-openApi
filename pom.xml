@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bikini-openApi</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>API modules</name>
-
     <parent>
         <groupId>www.ru</groupId>
         <artifactId>example-bom</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
+    <artifactId>bikini-openApi</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>API modules</name>
 
     <properties>
         <openApi.default.suffix>open</openApi.default.suffix>
@@ -30,6 +30,7 @@
 
     <modules>
         <module>bikini-bottom-api</module>
+        <module>bikini-validation-api</module>
     </modules>
 
     <dependencies>

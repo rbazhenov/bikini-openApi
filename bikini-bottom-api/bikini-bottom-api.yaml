@@ -1,6 +1,6 @@
 openapi: "3.0.1" #todo find last version
 info:
-  title: Sample API
+  title: Bikini bottom API
   description: API description in Markdown.
   version: 1.6.0
   contact:

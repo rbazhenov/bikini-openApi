@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bikini-bottom-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>Bikini bottom API</name>
-
     <parent>
         <groupId>www.ru</groupId>
         <artifactId>bikini-openApi</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+
+    <artifactId>bikini-bottom-api</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Bikini bottom API</name>
 
     <properties>
         <openApi.in.file>bikini-bottom-api.yaml</openApi.in.file>
