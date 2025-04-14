@@ -42,7 +42,46 @@ paths:
             schema:
               $ref: "../components/bikini-bottom.yaml#/components/schemas/SnailDto"
       responses:
-        200:
-          description: snail pet saved
+        "200":
+          description: return saved data
+          content:
+            application/json:
+              schema:
+                $ref: "../components/bikini-bottom.yaml#/components/schemas/SnailDto"
 
-  #todo add other
+  /bikini-bottom/pet/snail/{id}:
+    get:
+      summary: get snail pet
+      operationId: getSnailById
+      tags:
+        - snail
+      parameters:
+        - name: id
+          description: ID of snail
+          required: true
+          in: path
+          schema:
+            $ref: "../components/shared.yaml#/components/schemas/ObjectId"
+      responses:
+        200:
+          description: snail pet list
+          content:
+            application/json:
+              schema:
+                $ref: "../components/bikini-bottom.yaml#/components/schemas/SnailDto"
+
+  /bikini-bottom/pet/snail/list:
+    get:
+      summary: get snail pet list
+      operationId: listSnail
+      tags:
+        - snail
+      responses:
+        200:
+          description: snail pet
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../components/bikini-bottom.yaml#/components/schemas/SnailDto"
