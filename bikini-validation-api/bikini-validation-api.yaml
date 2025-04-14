@@ -1,0 +1,44 @@
+openapi: "3.0.1" #todo find last version
+info:
+  title: Bikini bottom validation API
+  description: API description in Markdown.
+  version: 1.6.0
+  contact:
+    name: Ruslan Bazhenov
+    email: bazhen.ruslan@gmail.com
+tags:
+  - name: bikiniValidation
+
+paths:
+  /bikini-validation/resident/check:
+    post:
+      summary: check resident
+      operationId: checkResident
+      tags:
+        - bikiniValidation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectId'
+      responses:
+        "200":
+          description: async validation apply
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResidentCheckResponse'
+
+components:
+  schemas:
+    ObjectId:
+      type: string
+      maxLength: 255
+
+    ResidentCheckResponse:
+      type: object
+      properties:
+        internalId:
+          $ref: '#/components/schemas/ObjectId'
+        checkId:
+          $ref: '#/components/schemas/ObjectId'
