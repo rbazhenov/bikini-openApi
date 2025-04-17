@@ -146,6 +146,8 @@ components:
           maxItems: 255
           items:
             $ref: '#/components/schemas/FileDto'
+        validated:
+          type: boolean
 
     LocalResidentDto:
       allOf:
