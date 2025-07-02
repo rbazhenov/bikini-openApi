@@ -64,7 +64,7 @@ paths:
             $ref: "../components/shared.yaml#/components/schemas/ObjectId"
       responses:
         200:
-          description: snail pet list
+          description: snail pet
           content:
             application/json:
               schema:
@@ -78,7 +78,7 @@ paths:
         - snail
       responses:
         200:
-          description: snail pet
+          description: snail pet list
           content:
             application/json:
               schema:
